@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
@@ -12,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.example.pam_ucp2.ui.navigation.AlamatNavigasi
+import com.example.pam_ucp2.ui.viewmodel.dokter.DktrUIState
 import com.example.pam_ucp2.ui.viewmodel.dokter.DokterEvent
 import com.example.pam_ucp2.ui.viewmodel.dokter.FormErrorState
 
@@ -24,6 +26,33 @@ fun InsertDktr(
 
 ){
 
+}
+
+@Composable
+fun InsertBodyDktr(
+    modifier: Modifier = Modifier,
+    onValueChange: (DokterEvent) -> Unit,
+    uiState: DktrUIState,
+    onClick: () -> Unit
+){
+    Column(
+        modifier = modifier.fillMaxWidth(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        FormDokter(
+            dokterEvent = uiState.dokterEvent,
+            onValueChange = onValueChange,
+            errorState = uiState.isEntryValid,
+            modifier = Modifier.fillMaxWidth()
+        )
+        Button(
+            onClick = onClick,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text("Simpan")
+        }
+    }
 }
 
 @Composable
