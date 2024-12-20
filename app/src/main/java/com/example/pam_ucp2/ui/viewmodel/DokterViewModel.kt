@@ -10,6 +10,26 @@ class DokterViewModel (
 
 }
 
+// ui state
+
+// validation
+data class  FormErrorState(
+    val idDokter: String? = null,
+    val nama: String? = null,
+    val spesialis: String? = null,
+    val klinik: String? = null,
+    val noHp: String? = null,
+    val jamKerja: String? = null,
+){
+    fun isValid(): Boolean{
+        return idDokter == null
+                && nama == null
+                && spesialis == null
+                && klinik == null
+                && noHp == null
+                && jamKerja == null
+    }
+}
 
 // tampung data
 data class DokterEvent(
