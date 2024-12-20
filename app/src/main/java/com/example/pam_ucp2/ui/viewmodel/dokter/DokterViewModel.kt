@@ -1,6 +1,5 @@
-package com.example.pam_ucp2.ui.viewmodel
+package com.example.pam_ucp2.ui.viewmodel.dokter
 
-import android.os.Message
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue

@@ -5,6 +5,7 @@ import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.pam_ucp2.AdminRsApp
+import com.example.pam_ucp2.ui.viewmodel.dokter.DokterViewModel
 
 object PenyediaViewModel{
     val Factory = viewModelFactory {
