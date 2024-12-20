@@ -17,4 +17,12 @@ class LocalRepositoryJdwl(private val jadwalDao: JadwalDao) : RepositoryJdwl {
         jadwalDao.updateJadwal(jadwal)
     }
 
+    override fun getAllJdwl(): Flow<List<Jadwal>> {
+        return jadwalDao.getAllJadwal()
+    }
+
+    override fun getJdwl(idJadwal: String): Flow<Jadwal> {
+        return jadwalDao.getJadwal(idJadwal)
+    }
+
 }
