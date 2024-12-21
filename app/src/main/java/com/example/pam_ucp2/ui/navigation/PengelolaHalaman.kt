@@ -6,8 +6,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.pam_ucp2.ui.view.dokter.DestinasiInsert
+import com.example.pam_ucp2.ui.view.HomePage
 import com.example.pam_ucp2.ui.view.dokter.InsertDktr
+import com.example.pam_ucp2.ui.view.jadwal.HomeJdwlView
 
 @Composable
 fun PengelolaHalaman(
@@ -16,15 +17,24 @@ fun PengelolaHalaman(
 ){
     NavHost(
         navController = navController,
-        startDestination = DestinasiInsert.route
+        startDestination = DestinationHome.route
     ) {
+        // Home Page
         composable(
-            route = DestinasiInsert.route
+            route = DestinationHome.route
         ){
-            InsertDktr(
-                onBack = {},
-                onNavigate = {}
+            HomePage(
+                dokterPageButton = {
+                    navController.navigate(DestinationDokterInsert.route)
+                },
+                jadwalPageButton = {
+                    navController.navigate(DestinationJadwalInsert.route)
+                },
             )
         }
+        // Insert Dokter
+
+
+        // Insert Jadwal
     }
 }
