@@ -1,4 +1,4 @@
-package com.example.pam_ucp2.ui.costumewiget
+package com.example.pam_ucp2.ui.costumewidget
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
