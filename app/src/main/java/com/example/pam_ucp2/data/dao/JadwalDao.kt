@@ -8,6 +8,7 @@ import androidx.room.Update
 import com.example.pam_ucp2.data.entity.Jadwal
 import kotlinx.coroutines.flow.Flow
 
+@Dao
 interface JadwalDao {
     @Insert
     suspend fun insertJadwal (jadwal: Jadwal)
