@@ -15,14 +15,18 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.pam_ucp2.ui.costumewiget.TopAppBar
+import com.example.pam_ucp2.ui.costumewidget.DynamicSelectedField
+import com.example.pam_ucp2.ui.costumewidget.TopAppBar
 import com.example.pam_ucp2.ui.navigation.AlamatNavigasi
 import com.example.pam_ucp2.ui.viewmodel.PenyediaViewModel
 import com.example.pam_ucp2.ui.viewmodel.dokter.DktrUIState
@@ -124,6 +128,12 @@ fun FormDokter(
     dokterEvent: DokterEvent = DokterEvent(),
     errorState: FormErrorState = FormErrorState()
 ){
+    var chosenDropdown by remember {
+        mutableStateOf("")
+    }
+
+    var listData: MutableList<String> = mutableListOf(chosenDropdown)
+
     val spesialis = listOf(
         "Dokter spesialis bedah",
         "Dokter spesialis penyakit dalam",
@@ -166,27 +176,16 @@ fun FormDokter(
             color = Color.Red
         )
         // Spesialis
-        Text("Jenis Kelamin")
-        Row (
-            modifier = Modifier.fillMaxWidth()
-        ){
-            spesialis.forEach { sps ->
-                Row (
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.Start
-                ){
-                    RadioButton(
-                        selected = dokterEvent.spesialis == sps,
-                        onClick = {
-                            onValueChange(dokterEvent.copy(spesialis = sps))
-                        }
-                    )
-                    Text(
-                        text = sps
-                    )
-                }
+        DynamicSelectedField(
+            value = dokterEvent.spesialis,
+            selectedValue = chosenDropdown,
+            options = spesialis,
+            lable = "Spesialis",
+            onValueChangedEvent = {
+                onValueChange(dokterEvent.copy(spesialis = it))
             }
-        }
+        )
+
         Text(
             text = errorState.spesialis ?: "",
             color = Color.Red
