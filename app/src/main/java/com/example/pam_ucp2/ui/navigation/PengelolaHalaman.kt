@@ -7,8 +7,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.pam_ucp2.ui.view.HomePage
+import com.example.pam_ucp2.ui.view.dokter.HomeDktrView
 import com.example.pam_ucp2.ui.view.dokter.InsertDktr
 import com.example.pam_ucp2.ui.view.jadwal.HomeJdwlView
+import com.example.pam_ucp2.ui.view.jadwal.InsertJdwlView
 
 @Composable
 fun PengelolaHalaman(
@@ -25,16 +27,54 @@ fun PengelolaHalaman(
         ){
             HomePage(
                 dokterPageButton = {
-                    navController.navigate(DestinationDokterInsert.route)
+                    navController.navigate(DestinationDokterHome.route)
                 },
                 jadwalPageButton = {
                     navController.navigate(DestinationJadwalInsert.route)
                 },
             )
         }
+
+        // Home Dokter
+        composable(
+            route = DestinationDokterHome.route
+        ){
+            HomeDktrView(
+                onAddDktr ={
+                    navController.navigate(DestinationJadwalInsert.route)
+                },
+                onBack = {
+                    navController.popBackStack()
+                },
+                modifier = modifier
+            )
+        }
+
         // Insert Dokter
-
-
+        composable(
+            route = DestinationDokterInsert.route
+        ){
+            InsertDktr(
+                onBack = {
+                    navController.popBackStack()
+                },
+                onNavigate = {
+                    navController.popBackStack()
+                }
+            )
+        }
         // Insert Jadwal
+        composable(
+            route = DestinationJadwalInsert.route
+        ){
+            InsertJdwlView(
+                onBack = {
+                    navController.popBackStack()
+                },
+                onNavigate = {
+                    navController.popBackStack()
+                }
+            )
+        }
     }
 }
