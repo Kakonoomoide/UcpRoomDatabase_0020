@@ -16,7 +16,7 @@ import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
-class DetailJdwlViewModel (
+class DetailJadwalViewModel (
     savedStateHandle: SavedStateHandle,
     private val repositoryJdwl: RepositoryJdwl,
 ) : ViewModel(){
@@ -51,7 +51,7 @@ class DetailJdwlViewModel (
             ),
         )
 
-    fun deteleMhs() {
+    fun deteleJdwl() {
         detailUiState.value.detailUiEvent.toJadwalEntity().let {
             viewModelScope.launch {
                 repositoryJdwl.deleteJdwl(it)

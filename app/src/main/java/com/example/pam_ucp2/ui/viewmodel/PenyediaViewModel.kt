@@ -1,12 +1,14 @@
 package com.example.pam_ucp2.ui.viewmodel
 
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.pam_ucp2.AdminRsApp
 import com.example.pam_ucp2.ui.viewmodel.dokter.DokterViewModel
 import com.example.pam_ucp2.ui.viewmodel.dokter.HomeDktrViewModel
+import com.example.pam_ucp2.ui.viewmodel.jadwal.DetailJadwalViewModel
 import com.example.pam_ucp2.ui.viewmodel.jadwal.HomeJadwalViewModel
 import com.example.pam_ucp2.ui.viewmodel.jadwal.JadwalViewModel
 
@@ -34,6 +36,13 @@ object PenyediaViewModel{
                 adminRsApp().containerApp.repositoryJdwl
             )
         }
+        initializer {
+            DetailJadwalViewModel(
+                createSavedStateHandle(),
+                adminRsApp().containerApp.repositoryJdwl
+            )
+        }
+
     }
 }
 

@@ -3,12 +3,15 @@ package com.example.pam_ucp2.ui.navigation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.pam_ucp2.ui.view.HomePage
 import com.example.pam_ucp2.ui.view.dokter.HomeDktrView
 import com.example.pam_ucp2.ui.view.dokter.InsertDktr
+import com.example.pam_ucp2.ui.view.jadwal.DetailJdwlView
 import com.example.pam_ucp2.ui.view.jadwal.HomeJdwlView
 import com.example.pam_ucp2.ui.view.jadwal.InsertJdwlView
 
@@ -68,6 +71,10 @@ fun PengelolaHalaman(
             route = DestinationJadwalHome.route
         ){
             HomeJdwlView(
+                onDetailClick = { idjadwal ->
+                    navController.navigate("${DestinasiDetail.route}/$idjadwal")
+                    println("Pengelola Halaman: idJadwal = $idjadwal")
+                },
                 onAddJdwl ={
                     navController.navigate(DestinationJadwalInsert.route)
                 },
@@ -87,6 +94,29 @@ fun PengelolaHalaman(
                     navController.popBackStack()
                 }
             )
+        }
+
+        // Detail Jadwal
+        composable(
+            DestinasiDetail.routeWithArg,
+            arguments = listOf(
+                navArgument(DestinasiDetail.idJadwal){
+                    type = NavType.StringType
+                }
+            )
+        ){
+            val idjadwal = it.arguments?.getString(DestinasiDetail.idJadwal)
+            idjadwal?.let { idjadwal ->
+                DetailJdwlView(
+                    onBack = {
+                        navController.popBackStack()
+                    },
+                    modifier = modifier,
+                    onDeleteClick = {
+                        navController.popBackStack()
+                    }
+                )
+            }
         }
     }
 }
