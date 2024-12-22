@@ -35,10 +35,6 @@ import com.example.pam_ucp2.ui.viewmodel.dokter.DokterViewModel
 import com.example.pam_ucp2.ui.viewmodel.dokter.FormErrorState
 import kotlinx.coroutines.launch
 
-object DestinasiInsert : AlamatNavigasi {
-    override val route: String = "insert_dktr"
-}
-
 @Composable
 fun InsertDktr(
     onBack: () -> Unit,
@@ -51,7 +47,7 @@ fun InsertDktr(
     val snacBarHostState = remember{SnackbarHostState() }
     val coroutineScope = rememberCoroutineScope()
 
-    // obser on change snack bar
+    // observe on change snack bar
     LaunchedEffect(uiState.snackBarMessage) {
         uiState.snackBarMessage?.let { message ->
             coroutineScope.launch {
@@ -132,7 +128,7 @@ fun FormDokter(
         mutableStateOf("")
     }
 
-    var listData: MutableList<String> = mutableListOf(chosenDropdown)
+    //var listData: MutableList<String> = mutableListOf(chosenDropdown)
 
     val spesialis = listOf(
         "Dokter spesialis bedah",
@@ -185,7 +181,6 @@ fun FormDokter(
                 onValueChange(dokterEvent.copy(spesialis = it))
             }
         )
-
         Text(
             text = errorState.spesialis ?: "",
             color = Color.Red

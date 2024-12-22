@@ -143,6 +143,14 @@ fun FormJadwal(
         "Menunggu Hasil (Waiting for Results)",
     )
 
+    val spesialis = listOf(
+        "Dokter spesialis bedah",
+        "Dokter spesialis penyakit dalam",
+        "Dokter spesialis endokrin",
+        "Dokter spesialis anak",
+        "Dokter spesialis saraf"
+    )
+
     Column (
         modifier = modifier.fillMaxWidth()
     ){
@@ -162,13 +170,13 @@ fun FormJadwal(
             color = Color.Red
         )
         // Nama Dokter
-
-        DynamicSelectedDktr(
-            selectedValue = jadwalEvent.namaDokter,
-            listDktr = listDokter,
+        DynamicSelectedField(
+            value = jadwalEvent.namaDokter,
+            selectedValue = chosenDropdown,
+            options = spesialis,
             lable = "Nama Dokter",
-            onValueChangedEvent = { selectedDokter ->
-                onValueChange(jadwalEvent.copy(namaDokter = selectedDokter))
+            onValueChangedEvent = {
+                onValueChange(jadwalEvent.copy(status = it))
             }
         )
         Text(
