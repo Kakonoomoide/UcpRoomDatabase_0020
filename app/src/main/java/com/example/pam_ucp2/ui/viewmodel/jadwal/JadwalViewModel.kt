@@ -5,14 +5,18 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.pam_ucp2.data.entity.Dokter
 import com.example.pam_ucp2.data.entity.Jadwal
 import com.example.pam_ucp2.repository.RepositoryJdwl
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 class JadwalViewModel(
     private val repositoryJdwl: RepositoryJdwl
 ): ViewModel(){
     var uiState by mutableStateOf(JdwlUIState())
+
+    val listDokter: Flow<List<Dokter>> = repositoryJdwl.getAllNamaDokter()
 
     // update state berdasarkan input
     fun updateState(jadwalEvent: JadwalEvent){

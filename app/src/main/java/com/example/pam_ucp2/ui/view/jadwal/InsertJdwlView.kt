@@ -24,7 +24,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.pam_ucp2.data.entity.Dokter
-import com.example.pam_ucp2.ui.costumewidget.DynamicSelectedDktr
 import com.example.pam_ucp2.ui.costumewidget.DynamicSelectedField
 import com.example.pam_ucp2.ui.costumewidget.TopAppBar
 import com.example.pam_ucp2.ui.viewmodel.PenyediaViewModel
@@ -119,6 +118,7 @@ fun InserBodyJdwl(
 @Composable
 fun FormJadwal(
     modifier: Modifier = Modifier,
+    viewModel: JadwalViewModel = viewModel(),
     onValueChange:(JadwalEvent)-> Unit,
     jadwalEvent: JadwalEvent = JadwalEvent(),
     errorState: FormErrorState = FormErrorState(),
@@ -128,8 +128,7 @@ fun FormJadwal(
         mutableStateOf("")
     }
 
-    //val listNamaDokter = listDokterViewModel.namaDokter.value
-
+    var listNamaDokter by remember { mutableStateOf(listOf<String>()) }
 
     val statusPasien = listOf(
         "Terjadwal (Scheduled)",
@@ -141,14 +140,6 @@ fun FormJadwal(
         "Tidak Hadir (No Show)",
         "Akomodasi (Accommodated)",
         "Menunggu Hasil (Waiting for Results)",
-    )
-
-    val spesialis = listOf(
-        "Dokter spesialis bedah",
-        "Dokter spesialis penyakit dalam",
-        "Dokter spesialis endokrin",
-        "Dokter spesialis anak",
-        "Dokter spesialis saraf"
     )
 
     Column (
@@ -170,13 +161,19 @@ fun FormJadwal(
             color = Color.Red
         )
         // Nama Dokter
+        LaunchedEffect (Unit) {
+            viewModel.listDokter.collect { dokterList ->
+                listNamaDokter = dokterList.map { it.nama }
+            }
+        }
         DynamicSelectedField(
             value = jadwalEvent.namaDokter,
             selectedValue = chosenDropdown,
-            options = spesialis,
+            options = listNamaDokter,
             lable = "Nama Dokter",
-            onValueChangedEvent = {
-                onValueChange(jadwalEvent.copy(status = it))
+            onValueChangedEvent = { selectedNamaDokter ->
+                onValueChange(jadwalEvent.copy(status = selectedNamaDokter))
+                chosenDropdown = selectedNamaDokter
             }
         )
         Text(
@@ -236,8 +233,9 @@ fun FormJadwal(
             selectedValue = chosenDropdown,
             options = statusPasien,
             lable = "Status Pasien",
-            onValueChangedEvent = {
-                onValueChange(jadwalEvent.copy(status = it))
+            onValueChangedEvent = { selectedStatusPasien ->
+                onValueChange(jadwalEvent.copy(status = selectedStatusPasien))
+                chosenDropdown = selectedStatusPasien
             }
         )
         Text(

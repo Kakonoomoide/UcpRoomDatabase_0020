@@ -177,8 +177,9 @@ fun FormDokter(
             selectedValue = chosenDropdown,
             options = spesialis,
             lable = "Spesialis",
-            onValueChangedEvent = {
-                onValueChange(dokterEvent.copy(spesialis = it))
+            onValueChangedEvent = { selectedSpesialisDokter ->
+                onValueChange(dokterEvent.copy(spesialis = selectedSpesialisDokter))
+                chosenDropdown = selectedSpesialisDokter
             }
         )
         Text(
