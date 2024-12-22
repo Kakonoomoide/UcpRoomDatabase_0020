@@ -1,5 +1,6 @@
 package com.example.pam_ucp2.repository
 
+import com.example.pam_ucp2.data.entity.Dokter
 import com.example.pam_ucp2.data.entity.Jadwal
 import kotlinx.coroutines.flow.Flow
 
@@ -13,4 +14,6 @@ interface RepositoryJdwl {
     fun getAllJdwl(): Flow<List<Jadwal>>
 
     fun getJdwl(nim: String): Flow<Jadwal>
+
+    fun getAllNamaDokter(): Flow<List<Dokter>>
 }

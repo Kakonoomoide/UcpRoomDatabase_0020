@@ -1,6 +1,7 @@
 package com.example.pam_ucp2.repository
 
 import com.example.pam_ucp2.data.dao.JadwalDao
+import com.example.pam_ucp2.data.entity.Dokter
 import com.example.pam_ucp2.data.entity.Jadwal
 import kotlinx.coroutines.flow.Flow
 
@@ -25,4 +26,7 @@ class LocalRepositoryJdwl(private val jadwalDao: JadwalDao) : RepositoryJdwl {
         return jadwalDao.getJadwal(idJadwal)
     }
 
+    override fun getAllNamaDokter(): Flow<List<Dokter>> {
+        return jadwalDao.getAllNamaDokter()
+    }
 }

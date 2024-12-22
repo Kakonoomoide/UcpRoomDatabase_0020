@@ -5,6 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
+import com.example.pam_ucp2.data.entity.Dokter
 import com.example.pam_ucp2.data.entity.Jadwal
 import kotlinx.coroutines.flow.Flow
 
@@ -24,4 +25,7 @@ interface JadwalDao {
 
     @Query("SELECT * FROM jadwal WHERE idJadwal = :idJadwal")
     fun getJadwal(idJadwal : String): Flow<Jadwal>
+
+    @Query("SELECT * FROM dokter ORDER BY nama DESC")
+    fun getAllNamaDokter(): Flow<List<Dokter>>
 }
