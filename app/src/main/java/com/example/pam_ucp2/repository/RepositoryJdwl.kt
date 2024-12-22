@@ -13,7 +13,7 @@ interface RepositoryJdwl {
 
     fun getAllJdwl(): Flow<List<Jadwal>>
 
-    fun getJdwl(nim: String): Flow<Jadwal>
+    fun getJdwl(idJadwal: String): Flow<Jadwal>
 
     fun getAllNamaDokter(): Flow<List<Dokter>>
 }

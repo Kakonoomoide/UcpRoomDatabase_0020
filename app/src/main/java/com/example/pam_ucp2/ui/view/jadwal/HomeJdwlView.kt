@@ -144,7 +144,7 @@ fun ListJadwal(
     modifier: Modifier = Modifier,
     onClick: (String) -> Unit = { }
 ){
-    LazyColumn (modifier = Modifier){
+    LazyColumn (modifier = modifier){
         items(
             items = listJdwl,
             itemContent = { jdwl ->
