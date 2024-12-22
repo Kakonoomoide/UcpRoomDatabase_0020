@@ -30,7 +30,7 @@ fun PengelolaHalaman(
                     navController.navigate(DestinationDokterHome.route)
                 },
                 jadwalPageButton = {
-                    navController.navigate(DestinationJadwalInsert.route)
+                    navController.navigate(DestinationJadwalHome.route)
                 },
             )
         }
@@ -63,6 +63,18 @@ fun PengelolaHalaman(
                 }
             )
         }
+        // Home Jadwal
+        composable(
+            route = DestinationJadwalHome.route
+        ){
+            HomeJdwlView(
+                onAddJdwl ={
+                    navController.navigate(DestinationJadwalInsert.route)
+                },
+                modifier = modifier
+            )
+        }
+
         // Insert Jadwal
         composable(
             route = DestinationJadwalInsert.route
