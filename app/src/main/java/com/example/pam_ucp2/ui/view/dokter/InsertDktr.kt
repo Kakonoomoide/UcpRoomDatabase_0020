@@ -173,7 +173,6 @@ fun FormDokter(
         )
         // Spesialis
         DynamicSelectedField(
-            value = dokterEvent.spesialis,
             selectedValue = chosenDropdown,
             options = spesialis,
             lable = "Spesialis",

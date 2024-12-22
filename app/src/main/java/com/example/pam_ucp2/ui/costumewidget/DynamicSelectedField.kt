@@ -18,7 +18,6 @@ import androidx.compose.ui.Modifier
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DynamicSelectedField(
-    value: String,
     selectedValue: String,
     options: List<String>,
     lable: String,

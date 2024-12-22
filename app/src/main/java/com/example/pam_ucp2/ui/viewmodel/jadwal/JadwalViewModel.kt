@@ -1,5 +1,6 @@
 package com.example.pam_ucp2.ui.viewmodel.jadwal
 
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -9,6 +10,9 @@ import com.example.pam_ucp2.data.entity.Dokter
 import com.example.pam_ucp2.data.entity.Jadwal
 import com.example.pam_ucp2.repository.RepositoryJdwl
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 class JadwalViewModel(
@@ -16,7 +20,11 @@ class JadwalViewModel(
 ): ViewModel(){
     var uiState by mutableStateOf(JdwlUIState())
 
-    val listDokter: Flow<List<Dokter>> = repositoryJdwl.getAllNamaDokter()
+    val listDokter = repositoryJdwl.getAllNamaDokter()
+        .onEach { dokterList ->
+            Log.d("InsertViewModel", "Dokter List: $dokterList")
+        }
+        .stateIn(viewModelScope, SharingStarted.Eagerly, emptyList())
 
     // update state berdasarkan input
     fun updateState(jadwalEvent: JadwalEvent){

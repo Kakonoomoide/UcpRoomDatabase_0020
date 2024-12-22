@@ -45,7 +45,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun HomeJdwlView(
     viewModel: HomeJadwalViewModel = viewModel(factory = PenyediaViewModel.Factory),
-    onAddMhs: () -> Unit = { },
+    onAddJdwl: () -> Unit = { },
     onDetailClick: (String) -> Unit = { },
     modifier: Modifier = Modifier
 ) {
@@ -58,7 +58,7 @@ fun HomeJdwlView(
     },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = onAddMhs,
+                onClick = onAddJdwl,
                 shape = MaterialTheme.shapes.medium,
                 modifier = Modifier.padding(16.dp)
             ) {
@@ -116,7 +116,7 @@ fun BodyHomeMhsView(
                 contentAlignment = Alignment.Center
             ){
                 Text(
-                    text = "Tidak ada data mahasiswa.",
+                    text = "Tidak ada Jadwal Pasien",
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.padding(16.dp)
