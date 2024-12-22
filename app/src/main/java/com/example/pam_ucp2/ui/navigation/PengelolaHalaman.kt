@@ -41,7 +41,7 @@ fun PengelolaHalaman(
         ){
             HomeDktrView(
                 onAddDktr ={
-                    navController.navigate(DestinationJadwalInsert.route)
+                    navController.navigate(DestinationDokterInsert.route)
                 },
                 onBack = {
                     navController.popBackStack()
