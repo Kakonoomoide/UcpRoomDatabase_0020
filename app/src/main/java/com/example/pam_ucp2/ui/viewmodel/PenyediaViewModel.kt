@@ -7,10 +7,12 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.pam_ucp2.AdminRsApp
 import com.example.pam_ucp2.ui.viewmodel.dokter.DokterViewModel
 import com.example.pam_ucp2.ui.viewmodel.dokter.HomeDktrViewModel
+import com.example.pam_ucp2.ui.viewmodel.jadwal.HomeJadwalViewModel
 import com.example.pam_ucp2.ui.viewmodel.jadwal.JadwalViewModel
 
 object PenyediaViewModel{
     val Factory = viewModelFactory {
+        // view model Dokter
         initializer {
             DokterViewModel(
                 adminRsApp().containerApp.repositoryDktr
@@ -21,8 +23,14 @@ object PenyediaViewModel{
                 adminRsApp().containerApp.repositoryDktr
             )
         }
+        // Jadwal View Model
         initializer {
             JadwalViewModel(
+                adminRsApp().containerApp.repositoryJdwl
+            )
+        }
+        initializer {
+            HomeJadwalViewModel(
                 adminRsApp().containerApp.repositoryJdwl
             )
         }
