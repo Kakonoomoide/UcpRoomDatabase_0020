@@ -16,21 +16,21 @@ import kotlinx.coroutines.flow.stateIn
 class HomeDktrViewModel(
     private val repositoryDktr: RepositoryDktr
 ): ViewModel() {
-    val homeUiState: StateFlow<HomeUiState> = repositoryDktr.getAllDktr()
+    val homeUiState: StateFlow<HomeUiStateDokter> = repositoryDktr.getAllDktr()
         .filterNotNull()
         .map {
-            HomeUiState(
+            HomeUiStateDokter(
                 listDktr = it.toList(),
                 isLoading = false,
             )
         }
         .onStart {
-            emit(HomeUiState(isLoading = true))
+            emit(HomeUiStateDokter(isLoading = true))
             delay(900)
         }
         .catch {
             emit(
-                HomeUiState(
+                HomeUiStateDokter(
                     isLoading = false,
                     isError = true,
                     errorMessage = it.message ?: "Terjadi Kesalahan"
@@ -40,14 +40,14 @@ class HomeDktrViewModel(
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5000),
-            initialValue = HomeUiState(
+            initialValue = HomeUiStateDokter(
                 isLoading = true,
             )
         )
 }
 
 // state; mengubah tampilan
-data class HomeUiState(
+data class HomeUiStateDokter(
     val listDktr: List<Dokter> = listOf(),
     val isLoading: Boolean = false,
     val isError: Boolean = false,

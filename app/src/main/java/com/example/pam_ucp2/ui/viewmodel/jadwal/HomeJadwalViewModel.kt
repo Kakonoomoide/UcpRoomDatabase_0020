@@ -16,21 +16,21 @@ import kotlinx.coroutines.flow.stateIn
 class HomeJadwalViewModel(
     private val repositoryJdwl: RepositoryJdwl
 ): ViewModel() {
-    val homeUiState: StateFlow<HomeUiState> = repositoryJdwl.getAllJdwl()
+    val HomeUiStateJadwal: StateFlow<HomeUiStateJadwal> = repositoryJdwl.getAllJdwl()
         .filterNotNull()
         .map {
-            HomeUiState(
+            HomeUiStateJadwal(
                 listJdwl = it.toList(),
                 isLoading = false,
             )
         }
         .onStart {
-            emit(HomeUiState(isLoading = true))
+            emit(HomeUiStateJadwal(isLoading = true))
             delay(900)
         }
         .catch {
             emit(
-                HomeUiState(
+                HomeUiStateJadwal(
                     isLoading = false,
                     isError = true,
                     errorMessage = it.message ?: "Terjadi Kesalahan"
@@ -40,14 +40,14 @@ class HomeJadwalViewModel(
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5000),
-            initialValue = HomeUiState(
+            initialValue = HomeUiStateJadwal(
                 isLoading = true,
             )
         )
 }
 
 // state update ui
-data class HomeUiState(
+data class HomeUiStateJadwal(
     val listJdwl: List<Jadwal> = listOf(),
     val isLoading: Boolean = false,
     val isError: Boolean = false,

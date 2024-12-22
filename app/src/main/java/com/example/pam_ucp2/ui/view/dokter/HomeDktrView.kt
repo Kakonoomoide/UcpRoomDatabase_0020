@@ -40,7 +40,7 @@ import com.example.pam_ucp2.data.entity.Dokter
 import com.example.pam_ucp2.ui.costumewidget.TopAppBar
 import com.example.pam_ucp2.ui.viewmodel.PenyediaViewModel
 import com.example.pam_ucp2.ui.viewmodel.dokter.HomeDktrViewModel
-import com.example.pam_ucp2.ui.viewmodel.dokter.HomeUiState
+import com.example.pam_ucp2.ui.viewmodel.dokter.HomeUiStateDokter
 import kotlinx.coroutines.launch
 @Composable
 fun HomeDktrView(
@@ -79,7 +79,7 @@ fun HomeDktrView(
 
 @Composable
 fun BodyHomeDktrView(
-    homeUiState: HomeUiState,
+    homeUiState: HomeUiStateDokter,
     modifier: Modifier = Modifier
 ) {
     val coroutineScope = rememberCoroutineScope()
