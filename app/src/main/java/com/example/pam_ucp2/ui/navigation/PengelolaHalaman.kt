@@ -14,6 +14,7 @@ import com.example.pam_ucp2.ui.view.dokter.InsertDktr
 import com.example.pam_ucp2.ui.view.jadwal.DetailJdwlView
 import com.example.pam_ucp2.ui.view.jadwal.HomeJdwlView
 import com.example.pam_ucp2.ui.view.jadwal.InsertJdwlView
+import com.example.pam_ucp2.ui.view.jadwal.UpdateJdwlView
 
 @Composable
 fun PengelolaHalaman(
@@ -112,11 +113,34 @@ fun PengelolaHalaman(
                         navController.popBackStack()
                     },
                     modifier = modifier,
+                    onEditClick = {
+                        navController.navigate("${DestinasiUpdate.route}/$it")
+                    },
                     onDeleteClick = {
                         navController.popBackStack()
                     }
                 )
             }
+        }
+
+        // Edit Jadwal
+        composable(
+            DestinasiUpdate.routeWithArg,
+            arguments = listOf(
+                navArgument(DestinasiUpdate.idJadwal){
+                    type = NavType.StringType
+                }
+            )
+        ){
+            UpdateJdwlView(
+                onBack = {
+                    navController.popBackStack()
+                },
+                onNavigate = {
+                    navController.popBackStack()
+                },
+                modifier = modifier
+            )
         }
     }
 }

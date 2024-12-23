@@ -11,6 +11,7 @@ import com.example.pam_ucp2.ui.viewmodel.dokter.HomeDktrViewModel
 import com.example.pam_ucp2.ui.viewmodel.jadwal.DetailJadwalViewModel
 import com.example.pam_ucp2.ui.viewmodel.jadwal.HomeJadwalViewModel
 import com.example.pam_ucp2.ui.viewmodel.jadwal.JadwalViewModel
+import com.example.pam_ucp2.ui.viewmodel.jadwal.UpdateJadwalViewModel
 
 object PenyediaViewModel{
     val Factory = viewModelFactory {
@@ -38,6 +39,12 @@ object PenyediaViewModel{
         }
         initializer {
             DetailJadwalViewModel(
+                createSavedStateHandle(),
+                adminRsApp().containerApp.repositoryJdwl
+            )
+        }
+        initializer {
+            UpdateJadwalViewModel(
                 createSavedStateHandle(),
                 adminRsApp().containerApp.repositoryJdwl
             )
