@@ -12,6 +12,7 @@ import com.example.pam_ucp2.ui.navigation.DestinasiUpdate
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import android.util.Log
 
 class UpdateJadwalViewModel (
     savedStateHandle: SavedStateHandle,
@@ -20,15 +21,17 @@ class UpdateJadwalViewModel (
     var updateUIState by mutableStateOf(JdwlUIState())
         private set
 
-    private val _idjadwal: String = checkNotNull(savedStateHandle[DestinasiUpdate.idJadwal])
+    private val _idjadwal: String = checkNotNull(savedStateHandle[DestinasiUpdate.idjadwal])
+
 
     init {
         viewModelScope.launch {
             updateUIState = repositoryJdwl.getJdwl(_idjadwal)
                 .filterNotNull()
                 .first()
-                .toUIStateMhs()
+                .toUIStateJdwl()
         }
+        Log.d("UpdateJadwalViewModel", "id jadwal init: $_idjadwal")
     }
 
     fun updateState(jadwalEvent: JadwalEvent) {
@@ -84,6 +87,6 @@ class UpdateJadwalViewModel (
     }
 }
 
-fun Jadwal.toUIStateMhs() : JdwlUIState = JdwlUIState(
+fun Jadwal.toUIStateJdwl() : JdwlUIState = JdwlUIState(
     jadwalEvent = this.toDetailUiEvent(),
 )

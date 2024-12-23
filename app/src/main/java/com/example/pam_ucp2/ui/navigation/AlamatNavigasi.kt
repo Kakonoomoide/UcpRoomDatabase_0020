@@ -32,6 +32,6 @@ object DestinasiDetail : AlamatNavigasi {
 
 object DestinasiUpdate : AlamatNavigasi {
     override val route = "update_jadwal"
-    const val idJadwal = "idJadwal"
-    val routeWithArg = "$route/{$idJadwal}"
+    const val idjadwal = "idJadwal"
+    val routeWithArg = "$route/{$idjadwal}"
 }

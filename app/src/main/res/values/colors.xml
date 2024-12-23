@@ -7,4 +7,10 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="bedah_color">#FF0000</color>
+    <color name="penyakit_dalam_color">#FF8383</color>
+    <color name="endokrin_color">#B1F0F7</color>
+    <color name="anak_color">#4DA1A9</color>
+    <color name="saraf_color">#AF1740</color>
 </resources>

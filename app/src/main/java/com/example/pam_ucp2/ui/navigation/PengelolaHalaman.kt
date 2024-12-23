@@ -1,5 +1,6 @@
 package com.example.pam_ucp2.ui.navigation
 
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
@@ -114,12 +115,13 @@ fun PengelolaHalaman(
                     },
                     modifier = modifier,
                     onEditClick = {
-                        navController.navigate("${DestinasiUpdate.route}/$it")
+                        navController.navigate("${DestinasiUpdate.route}/$idjadwal")
                     },
                     onDeleteClick = {
                         navController.popBackStack()
                     }
                 )
+                Log.d("UpdateJadwalViewModel", "idJadwal: $idjadwal")
             }
         }
 
@@ -127,20 +129,27 @@ fun PengelolaHalaman(
         composable(
             DestinasiUpdate.routeWithArg,
             arguments = listOf(
-                navArgument(DestinasiUpdate.idJadwal){
+                navArgument(DestinasiUpdate.idjadwal) {
                     type = NavType.StringType
                 }
             )
-        ){
-            UpdateJdwlView(
-                onBack = {
-                    navController.popBackStack()
-                },
-                onNavigate = {
-                    navController.popBackStack()
-                },
-                modifier = modifier
-            )
+        ) { backStackEntry ->
+            // Ambil argumen idJadwal dari backStackEntry
+            val idjadwal = backStackEntry.arguments?.getString(DestinasiUpdate.idjadwal)
+            Log.d("UpdateJadwalViewModel", "idJadwalUpdate: $idjadwal")
+
+            idjadwal?.let { idjadwal ->
+                UpdateJdwlView(
+                    onBack = {
+                        navController.popBackStack()
+                    },
+                    onNavigate = {
+                        navController.popBackStack()
+                    },
+                    modifier = modifier
+                )
+                Log.d("UpdateJadwalViewModel", "idJadwalUpdate: $idjadwal")
+            }
         }
     }
 }

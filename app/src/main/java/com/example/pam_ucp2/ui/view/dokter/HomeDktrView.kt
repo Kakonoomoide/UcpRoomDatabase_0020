@@ -32,10 +32,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.pam_ucp2.R
 import com.example.pam_ucp2.data.entity.Dokter
 import com.example.pam_ucp2.ui.costumewidget.TopAppBar
 import com.example.pam_ucp2.ui.viewmodel.PenyediaViewModel
@@ -181,7 +184,15 @@ fun CardDktr(
                 Text(
                     text = dktr.spesialis,
                     fontWeight = FontWeight.Bold,
-                    fontSize = 16.sp
+                    fontSize = 16.sp,
+                    color = when (dktr.spesialis){
+                        "Dokter spesialis bedah" -> colorResource(id = R.color.bedah_color)
+                        "Dokter spesialis penyakit dalam" -> colorResource(id = R.color.penyakit_dalam_color)
+                        "Dokter spesialis endokrin" -> colorResource(id = R.color.endokrin_color)
+                        "Dokter spesialis anak" -> colorResource(id = R.color.anak_color)
+                        "Dokter spesialis saraf" -> colorResource(id = R.color.saraf_color)
+                        else -> Color.Black
+                    }
                 )
             }
             Row(
